@@ -1,0 +1,1583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bmsoft.sharejdbc.mapper.EventRecordMapper">
+  <resultMap id="BaseResultMap" type="com.bmsoft.sharejdbc.entity.EventRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ec_id" jdbcType="INTEGER" property="ecId" />
+    <result column="neo_id" jdbcType="BIGINT" property="neoId" />
+    <result column="ec_type" jdbcType="VARCHAR" property="ecType" />
+    <result column="start_node" jdbcType="VARCHAR" property="startNode" />
+    <result column="end_node" jdbcType="VARCHAR" property="endNode" />
+    <result column="portfolio_id" jdbcType="INTEGER" property="portfolioId" />
+    <result column="is_mark_label" jdbcType="INTEGER" property="isMarkLabel" />
+    <result column="is_insert_view" jdbcType="INTEGER" property="isInsertView" />
+    <result column="start_neo_id" jdbcType="BIGINT" property="startNeoId" />
+    <result column="end_neo_id" jdbcType="BIGINT" property="endNeoId" />
+    <result column="column_attr1" jdbcType="VARCHAR" property="columnAttr1" />
+    <result column="column_attr2" jdbcType="VARCHAR" property="columnAttr2" />
+    <result column="column_attr3" jdbcType="VARCHAR" property="columnAttr3" />
+    <result column="column_attr4" jdbcType="VARCHAR" property="columnAttr4" />
+    <result column="column_attr5" jdbcType="VARCHAR" property="columnAttr5" />
+    <result column="column_attr6" jdbcType="VARCHAR" property="columnAttr6" />
+    <result column="column_attr7" jdbcType="VARCHAR" property="columnAttr7" />
+    <result column="column_attr8" jdbcType="VARCHAR" property="columnAttr8" />
+    <result column="column_attr9" jdbcType="VARCHAR" property="columnAttr9" />
+    <result column="column_attr10" jdbcType="VARCHAR" property="columnAttr10" />
+    <result column="column_attr11" jdbcType="VARCHAR" property="columnAttr11" />
+    <result column="column_attr12" jdbcType="VARCHAR" property="columnAttr12" />
+    <result column="column_attr13" jdbcType="VARCHAR" property="columnAttr13" />
+    <result column="column_attr14" jdbcType="VARCHAR" property="columnAttr14" />
+    <result column="column_attr15" jdbcType="VARCHAR" property="columnAttr15" />
+    <result column="column_attr16" jdbcType="VARCHAR" property="columnAttr16" />
+    <result column="column_attr17" jdbcType="VARCHAR" property="columnAttr17" />
+    <result column="column_attr18" jdbcType="VARCHAR" property="columnAttr18" />
+    <result column="column_attr19" jdbcType="VARCHAR" property="columnAttr19" />
+    <result column="column_attr20" jdbcType="VARCHAR" property="columnAttr20" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,
+    ec_id,
+    neo_id,
+    ec_type,
+    start_node,
+    end_node,
+    portfolio_id,
+    is_mark_label,
+    is_insert_view,
+    start_neo_id,
+    end_neo_id,
+    column_attr1,
+    column_attr2,
+    column_attr3,
+    column_attr4,
+    column_attr5,
+    column_attr6,
+    column_attr7,
+    column_attr8,
+    column_attr9,
+    column_attr10,
+    column_attr11,
+    column_attr12,
+    column_attr13,
+    column_attr14,
+    column_attr15,
+    column_attr16,
+    column_attr17,
+    column_attr18,
+    column_attr19, column_attr20
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from rec_event
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="findByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from rec_event
+    where portfolio_id = #{portfolioId,jdbcType=INTEGER}
+    and ec_id = #{ecId,jdbcType=INTEGER}
+    and neo_id = #{neoId}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rec_event
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bmsoft.sharejdbc.entity.EventRecord">
+    insert into rec_event (id, ec_id,
+                                 neo_id, ec_type, start_node,
+                                 end_node, portfolio_id, column_attr1,
+                                 column_attr2, column_attr3, column_attr4,
+                                 column_attr5, column_attr6, column_attr7,
+                                 column_attr8, column_attr9, column_attr10,
+                                 column_attr11, column_attr12, column_attr13,
+                                 column_attr14, column_attr15, column_attr16,
+                                 column_attr17, column_attr18, column_attr19,
+                                 column_attr20)
+    values (#{id,jdbcType=INTEGER},  #{ecId,jdbcType=INTEGER},
+            #{neoId,jdbcType=BIGINT}, #{ecType,jdbcType=VARCHAR}, #{startNode,jdbcType=VARCHAR},
+            #{endNode,jdbcType=VARCHAR}, #{portfolioId,jdbcType=INTEGER},
+            #{columnAttr1,jdbcType=VARCHAR},
+            #{columnAttr2,jdbcType=VARCHAR}, #{columnAttr3,jdbcType=VARCHAR},
+            #{columnAttr4,jdbcType=VARCHAR},
+            #{columnAttr5,jdbcType=VARCHAR}, #{columnAttr6,jdbcType=VARCHAR},
+            #{columnAttr7,jdbcType=VARCHAR},
+            #{columnAttr8,jdbcType=VARCHAR}, #{columnAttr9,jdbcType=VARCHAR},
+            #{columnAttr10,jdbcType=VARCHAR},
+            #{columnAttr11,jdbcType=VARCHAR}, #{columnAttr12,jdbcType=VARCHAR},
+            #{columnAttr13,jdbcType=VARCHAR},
+            #{columnAttr14,jdbcType=VARCHAR}, #{columnAttr15,jdbcType=VARCHAR},
+            #{columnAttr16,jdbcType=VARCHAR},
+            #{columnAttr17,jdbcType=VARCHAR}, #{columnAttr18,jdbcType=VARCHAR},
+            #{columnAttr19,jdbcType=VARCHAR},
+            #{columnAttr20,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bmsoft.sharejdbc.entity.EventRecord">
+    insert into rec_event
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ecId != null">
+        ec_id,
+      </if>
+      <if test="neoId != null">
+        neo_id,
+      </if>
+      <if test="ecType != null">
+        ec_type,
+      </if>
+      <if test="startNode != null">
+        start_node,
+      </if>
+      <if test="endNode != null">
+        end_node,
+      </if>
+      <if test="portfolioId != null">
+        portfolio_id,
+      </if>
+      <if test="columnAttr1 != null">
+        column_attr1,
+      </if>
+      <if test="columnAttr2 != null">
+        column_attr2,
+      </if>
+      <if test="columnAttr3 != null">
+        column_attr3,
+      </if>
+      <if test="columnAttr4 != null">
+        column_attr4,
+      </if>
+      <if test="columnAttr5 != null">
+        column_attr5,
+      </if>
+      <if test="columnAttr6 != null">
+        column_attr6,
+      </if>
+      <if test="columnAttr7 != null">
+        column_attr7,
+      </if>
+      <if test="columnAttr8 != null">
+        column_attr8,
+      </if>
+      <if test="columnAttr9 != null">
+        column_attr9,
+      </if>
+      <if test="columnAttr10 != null">
+        column_attr10,
+      </if>
+      <if test="columnAttr11 != null">
+        column_attr11,
+      </if>
+      <if test="columnAttr12 != null">
+        column_attr12,
+      </if>
+      <if test="columnAttr13 != null">
+        column_attr13,
+      </if>
+      <if test="columnAttr14 != null">
+        column_attr14,
+      </if>
+      <if test="columnAttr15 != null">
+        column_attr15,
+      </if>
+      <if test="columnAttr16 != null">
+        column_attr16,
+      </if>
+      <if test="columnAttr17 != null">
+        column_attr17,
+      </if>
+      <if test="columnAttr18 != null">
+        column_attr18,
+      </if>
+      <if test="columnAttr19 != null">
+        column_attr19,
+      </if>
+      <if test="columnAttr20 != null">
+        column_attr20,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ecId != null">
+        #{ecId,jdbcType=INTEGER},
+      </if>
+      <if test="neoId != null">
+        #{neoId,jdbcType=BIGINT},
+      </if>
+      <if test="ecType != null">
+        #{ecType,jdbcType=VARCHAR},
+      </if>
+      <if test="startNode != null">
+        #{startNode,jdbcType=VARCHAR},
+      </if>
+      <if test="endNode != null">
+        #{endNode,jdbcType=VARCHAR},
+      </if>
+      <if test="portfolioId != null">
+        #{portfolioId,jdbcType=INTEGER},
+      </if>
+      <if test="columnAttr1 != null">
+        #{columnAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr2 != null">
+        #{columnAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr3 != null">
+        #{columnAttr3,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr4 != null">
+        #{columnAttr4,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr5 != null">
+        #{columnAttr5,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr6 != null">
+        #{columnAttr6,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr7 != null">
+        #{columnAttr7,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr8 != null">
+        #{columnAttr8,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr9 != null">
+        #{columnAttr9,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr10 != null">
+        #{columnAttr10,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr11 != null">
+        #{columnAttr11,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr12 != null">
+        #{columnAttr12,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr13 != null">
+        #{columnAttr13,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr14 != null">
+        #{columnAttr14,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr15 != null">
+        #{columnAttr15,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr16 != null">
+        #{columnAttr16,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr17 != null">
+        #{columnAttr17,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr18 != null">
+        #{columnAttr18,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr19 != null">
+        #{columnAttr19,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr20 != null">
+        #{columnAttr20,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bmsoft.sharejdbc.entity.EventRecord">
+    update rec_event
+    <set>
+      <if test="ecId != null">
+        ec_id = #{ecId,jdbcType=INTEGER},
+      </if>
+      <if test="neoId != null">
+        neo_id = #{neoId,jdbcType=BIGINT},
+      </if>
+      <if test="isMarkLabel != null">
+        is_mark_label = #{isMarkLabel,jdbcType=INTEGER},
+      </if>
+      <if test="isInsertView != null">
+        is_insert_view  = #{isInsertView,jdbcType=INTEGER},
+      </if>
+      <if test="startNeoId==null || startNeoId != null">
+        start_neo_id = #{startNeoId,jdbcType=BIGINT},
+      </if>
+      <if test="endNeoId==null || endNeoId!= null">
+        end_neo_id = #{endNeoId,jdbcType=BIGINT},
+      </if>
+      <if test="ecType != null">
+        ec_type = #{ecType,jdbcType=VARCHAR},
+      </if>
+      <if test="startNode != null">
+        start_node = #{startNode,jdbcType=VARCHAR},
+      </if>
+      <if test="endNode != null">
+        end_node = #{endNode,jdbcType=VARCHAR},
+      </if>
+      <if test="portfolioId != null">
+        portfolio_id = #{portfolioId,jdbcType=INTEGER},
+      </if>
+      <if test="columnAttr1 != null">
+        column_attr1 = #{columnAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr2 != null">
+        column_attr2 = #{columnAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr3 != null">
+        column_attr3 = #{columnAttr3,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr4 != null">
+        column_attr4 = #{columnAttr4,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr5 != null">
+        column_attr5 = #{columnAttr5,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr6 != null">
+        column_attr6 = #{columnAttr6,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr7 != null">
+        column_attr7 = #{columnAttr7,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr8 != null">
+        column_attr8 = #{columnAttr8,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr9 != null">
+        column_attr9 = #{columnAttr9,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr10 != null">
+        column_attr10 = #{columnAttr10,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr11 != null">
+        column_attr11 = #{columnAttr11,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr12 != null">
+        column_attr12 = #{columnAttr12,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr13 != null">
+        column_attr13 = #{columnAttr13,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr14 != null">
+        column_attr14 = #{columnAttr14,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr15 != null">
+        column_attr15 = #{columnAttr15,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr16 != null">
+        column_attr16 = #{columnAttr16,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr17 != null">
+        column_attr17 = #{columnAttr17,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr18 != null">
+        column_attr18 = #{columnAttr18,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr19 != null">
+        column_attr19 = #{columnAttr19,jdbcType=VARCHAR},
+      </if>
+      <if test="columnAttr20 != null">
+        column_attr20 = #{columnAttr20,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bmsoft.sharejdbc.entity.EventRecord">
+    update rec_event
+    set relation_record_id = #{relationRecordId,jdbcType=INTEGER},
+        ec_id = #{ecId,jdbcType=INTEGER},
+        neo_id = #{neoId,jdbcType=BIGINT},
+        ec_type = #{ecType,jdbcType=VARCHAR},
+        start_node = #{startNode,jdbcType=VARCHAR},
+        end_node = #{endNode,jdbcType=VARCHAR},
+        portfolio_id = #{portfolioId,jdbcType=INTEGER},
+        column_attr1 = #{columnAttr1,jdbcType=VARCHAR},
+        column_attr2 = #{columnAttr2,jdbcType=VARCHAR},
+        column_attr3 = #{columnAttr3,jdbcType=VARCHAR},
+        column_attr4 = #{columnAttr4,jdbcType=VARCHAR},
+        column_attr5 = #{columnAttr5,jdbcType=VARCHAR},
+        column_attr6 = #{columnAttr6,jdbcType=VARCHAR},
+        column_attr7 = #{columnAttr7,jdbcType=VARCHAR},
+        column_attr8 = #{columnAttr8,jdbcType=VARCHAR},
+        column_attr9 = #{columnAttr9,jdbcType=VARCHAR},
+        column_attr10 = #{columnAttr10,jdbcType=VARCHAR},
+        column_attr11 = #{columnAttr11,jdbcType=VARCHAR},
+        column_attr12 = #{columnAttr12,jdbcType=VARCHAR},
+        column_attr13 = #{columnAttr13,jdbcType=VARCHAR},
+        column_attr14 = #{columnAttr14,jdbcType=VARCHAR},
+        column_attr15 = #{columnAttr15,jdbcType=VARCHAR},
+        column_attr16 = #{columnAttr16,jdbcType=VARCHAR},
+        column_attr17 = #{columnAttr17,jdbcType=VARCHAR},
+        column_attr18 = #{columnAttr18,jdbcType=VARCHAR},
+        column_attr19 = #{columnAttr19,jdbcType=VARCHAR},
+        column_attr20 = #{columnAttr20,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByQueryEventDataDTO"
+    resultType="com.bmsoft.sharejdbc.vo.QueryEventDataVO"
+    parameterType="com.bmsoft.sharejdbc.dto.QueryEventDataDTO">
+    select
+    <choose>
+      <when test="horizontalTermDTO.attrDataType =='Date' ">
+        <if test="horizontalTermDTO.dateDimension == 'YEAR' ">
+          YEAR (ste.${horizontalTermDTO.columnAttr})
+        </if>
+        <if test="horizontalTermDTO.dateDimension == 'MONTH' ">
+          DATE_FORMAT(ste.${horizontalTermDTO.columnAttr},'%Y-%m')
+        </if>
+        <if test="horizontalTermDTO.dateDimension == 'DAY' ">
+          DATE_FORMAT(ste.${horizontalTermDTO.columnAttr},'%Y-%m-%d')
+        </if>
+        <if test="horizontalTermDTO.dateDimension == 'WEEKDAY' ">
+          WEEKDAY(ste.${horizontalTermDTO.columnAttr})
+        </if>
+        <if test="horizontalTermDTO.dateDimension == 'HOUR' ">
+          HOUR(ste.${horizontalTermDTO.columnAttr})
+        </if>
+      </when>
+      <otherwise>
+        ste.${horizontalTermDTO.columnAttr}
+      </otherwise>
+    </choose>
+    as horizontalData ,
+    <!-- 统计方式-->
+    <choose>
+      <when test="verticalTermDTO.filterMethod == 'SUM' ">
+        <choose>
+          <!-- 自定义列-->
+          <when test="verticalTermDTO.columnAttr == 'custom_count'">
+            SUM(case when ste.id != "" then 1 else 0 end)
+          </when>
+          <!-- 筛选列 CONVERT(ste.${verticalTermDTO.columnAttr},SIGNED)-->
+          <when test="verticalTermDTO.columnAttr !='custom_count'">
+            <choose>
+              <when test="verticalTermDTO.attrDataType == 'Integer'">
+                round(SUM( cast(ste.${verticalTermDTO.columnAttr} as  decimal(18,2))),2)
+              </when>
+            </choose>
+          </when>
+        </choose>
+      </when>
+      <when test="verticalTermDTO.filterMethod == 'MAX' ">
+        round(MAX(
+        <choose>
+          <!-- 筛选列 CONVERT(ste.${verticalTermDTO.columnAttr},SIGNED)-->
+          <when test="verticalTermDTO.columnAttr !='custom_count'">
+            <choose>
+              <when test="verticalTermDTO.attrDataType == 'Date'">
+                DATE_FORMAT(ste.${verticalTermDTO.columnAttr},'%Y-%m-%d %H:%i')
+              </when>
+              <when test="verticalTermDTO.attrDataType == 'String'">
+                ste.${verticalTermDTO.columnAttr}
+              </when>
+              <when test="verticalTermDTO.attrDataType == 'Integer'">
+                cast(ste.${verticalTermDTO.columnAttr} as  decimal(18,2))
+              </when>
+            </choose>
+          </when>
+        </choose>
+        ),2)
+      </when>
+      <when test="verticalTermDTO.filterMethod == 'MIN' ">
+        round(MIN(
+        <choose>
+          <!-- 筛选列-->
+          <when test="verticalTermDTO.columnAttr !='custom_count'">
+            <choose>
+              <when test="verticalTermDTO.attrDataType == 'Date'">
+                DATE_FORMAT(ste.${verticalTermDTO.columnAttr},'%Y-%m-%d %H:%i')
+              </when>
+              <when test="verticalTermDTO.attrDataType == 'Integer'">
+                cast(ste.${verticalTermDTO.columnAttr} as  decimal(18,2))
+              </when>
+            </choose>
+          </when>
+        </choose>
+        ),2)
+      </when>
+      <when test="verticalTermDTO.filterMethod == 'AVG' ">
+        round(AVG(
+        <choose>
+          <!-- 筛选列CONVERT(ste.${verticalTermDTO.columnAttr},SIGNED)-->
+          <when test="verticalTermDTO.columnAttr !='custom_count'">
+            <choose>
+              <when test="verticalTermDTO.attrDataType == 'Integer'">
+                cast(ste.${verticalTermDTO.columnAttr} as  decimal(18,2))
+              </when>
+            </choose>
+          </when>
+        </choose>
+        ),2)
+      </when>
+    </choose>
+    as verticalData
+    from rec_event ste
+    <where>
+      ste.ec_type= #{relationType}
+      and ste.portfolio_id= #{portfolioId}
+      <!-- 原始数据筛选条件 filterTermDTOS-->
+      <!--唯一标识的值-->
+      <if test="filterTermDTOS!=null">
+        <foreach collection="filterTermDTOS" index="index" item="filter">
+          <if test="filter.attrDataType =='Date'">
+            <if test="filter.dateDimension =='DAY' ">
+              <choose>
+                <when test="filter.filterType =='INTERVAL' ">
+                  <if test="filter.startValue !=null and filter.startValue !='' ">
+                    and DATE_FORMAT(ste.${filter.columnAttr},'%Y-%m-%d %H:%i') &gt;= DATE_FORMAT(#{filter.startValue},'%Y-%m-%d %H:%i')
+                  </if>
+                  <if test="filter.endValue != null and filter.endValue !='' ">
+                    and DATE_FORMAT(ste.${filter.columnAttr},'%Y-%m-%d %H:%i') &lt;= DATE_FORMAT(#{filter.endValue},'%Y-%m-%d %H:%i')
+                  </if>
+                </when>
+              </choose>
+            </if>
+          </if>
+          <if test="filter.attrDataType =='String' || filter.attrDataType =='Place'">
+            <choose>
+              <when test="filter.filterType =='EQUAL' ">
+                and ste.${filter.columnAttr} = #{filter.filterValue}
+              </when>
+              <when test="filter.filterType =='LIKE' ">
+                and ste.${filter.columnAttr} LIKE
+                CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+              </when>
+              <when test="filter.filterType =='UNLIKE' ">
+                and ste.${filter.columnAttr} NOT LIKE
+                CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+              </when>
+              <when test="filter.filterType =='LIST' ">
+                and ste.${filter.columnAttr} in
+                <foreach collection="filter.listValue" item="item" index="index" open="("
+                  close=")" separator=",">
+                  '${item}'
+                </foreach>
+              </when>
+            </choose>
+          </if>
+          <if test="filter.attrDataType =='Integer'">
+            <choose>
+              <when test="filter.filterType =='EQUAL' ">
+                and ste.${filter.columnAttr} = ${filter.filterValue}
+              </when>
+              <when test="filter.filterType =='INTERVAL' ">
+                <if test="filter.startValue !=null">
+                  and ste.${filter.columnAttr} &gt;= ${filter.startValue}
+                </if>
+                <if test="filter.endValue != null">
+                  and ste.${filter.columnAttr} &lt;= ${filter.endValue}
+                </if>
+              </when>
+              <when test="filter.filterType =='LIST' ">
+                and ste.${filter.columnAttr} in
+                <foreach collection="filter.listValue" item="item" index="index" open="("
+                  close=")" separator=",">
+                  ${item}
+                </foreach>
+              </when>
+            </choose>
+          </if>
+        </foreach>
+      </if>
+      <!--唯一标识的值-->
+      <choose>
+        <!--当节点不为空时，表示是节点带来的查询-->
+        <when test="nodeType !=null and nodeType !=''  and nodeType !='null' ">
+          <if test="isFilterStartNode and !isFilterEndNode">
+            and ste.end_node=#{nodeValue}
+          </if>
+          <if test="!isFilterStartNode and isFilterEndNode">
+            and  ste.start_node=#{nodeValue}
+          </if>
+          <if test="!isFilterEndNode and !isFilterStartNode">
+            and (ste.start_node=#{nodeValue} or ste.end_node=#{nodeValue})
+          </if>
+        </when>
+        <!--当节点为空时，表示是关系带来的查询-->
+        <when test="nodeType == 'null' || nodeType == null ">
+          and ste.start_node=#{startNodeValue} and ste.end_node=#{endNodeValue}
+        </when>
+      </choose>
+      group by horizontalData
+    </where>
+    <!-- 横轴 维度 过滤条件 -->
+    <if test="horizontalTermDTO.isFilter">
+      having
+      <if test="horizontalTermDTO.attrDataType =='Date'">
+        <if test="horizontalTermDTO.dateDimension == 'YEAR' ">
+          <choose>
+            <when test="horizontalTermDTO.filterType == 'LIST' ">
+              horizontalData  in
+              <foreach collection="horizontalTermDTO.listValue" item="item" index="index" open="("
+                close=")" separator=",">
+                ${item}
+              </foreach>
+            </when>
+          </choose>
+        </if>
+        <if test="horizontalTermDTO.dateDimension == 'MONTH' ">
+          <!-- mysql  版本不支持 STR_TO_DATE(,'%Y-%m') STR_TO_DATE(,'%Y-%m')STR_TO_DATE(,'%Y-%m') STR_TO_DATE(,'%Y-%m') -->
+          <choose>
+            <when test="horizontalTermDTO.filterType == 'INTERVAL' ">
+              <if test="horizontalTermDTO.startValue !=null and horizontalTermDTO.endValue != null">
+                horizontalData &gt;= #{horizontalTermDTO.startValue} and horizontalData &lt;=  #{horizontalTermDTO.endValue}
+              </if>
+            </when>
+          </choose>
+        </if>
+        <if test="horizontalTermDTO.dateDimension == 'DAY' ">
+          <choose>
+            <when test="horizontalTermDTO.filterType == 'INTERVAL' ">
+              <if test="horizontalTermDTO.startValue !=null and horizontalTermDTO.endValue != null">
+                DATE_FORMAT(horizontalData,'%Y-%m-%d %H:%i') &gt;= DATE_FORMAT(#{horizontalTermDTO.startValue},'%Y-%m-%d %H:%i')
+                and DATE_FORMAT(horizontalData,'%Y-%m-%d %H:%i') &lt;= DATE_FORMAT(#{horizontalTermDTO.endValue},'%Y-%m-%d %H:%i')
+              </if>
+            </when>
+          </choose>
+        </if>
+        <if test="horizontalTermDTO.dateDimension == 'WEEKDAY' ">
+          <choose>
+            <when test="horizontalTermDTO.filterType == 'LIST' ">
+              horizontalData  in
+              <foreach collection="horizontalTermDTO.listValue" item="item" index="index" open="("
+                close=")" separator=",">
+                ${item}
+              </foreach>
+            </when>
+          </choose>
+        </if>
+        <if test="horizontalTermDTO.dateDimension == 'HOUR' ">
+          <choose>
+            <when test="horizontalTermDTO.filterType == 'LIST' ">
+              horizontalData  in
+              <foreach collection="horizontalTermDTO.listValue" item="item" index="index" open="("
+                close=")" separator=",">
+                ${item}
+              </foreach>
+            </when>
+          </choose>
+        </if>
+      </if>
+      <if test="horizontalTermDTO.attrDataType == 'String' || horizontalTermDTO.attrDataType == 'Place' ">
+        <choose>
+          <when test="horizontalTermDTO.filterType == 'EQUAL' ">
+            horizontalData = #{horizontalTermDTO.filterValue}
+          </when>
+          <when test="horizontalTermDTO.filterType =='LIKE' ">
+            horizontalData LIKE
+            CONCAT(CONCAT('%',horizontalData,'%')
+          </when>
+          <when test="horizontalTermDTO.filterType =='UNLIKE' ">
+            horizontalData NOT LIKE
+            CONCAT(CONCAT('%',horizontalData,'%')
+          </when>
+          <when test="horizontalTermDTO.filterType == 'LIST' ">
+            horizontalData in
+            <foreach collection="horizontalTermDTO.listValue" item="item" index="index" open="("
+              close=")" separator=",">
+              '${item}'
+            </foreach>
+          </when>
+        </choose>
+      </if>
+      <if test="horizontalTermDTO.attrDataType == 'Integer'">
+        <choose>
+          <when test="horizontalTermDTO.filterType =='EQUAL' ">
+            horizontalData = ${horizontalTermDTO.filterValue}
+          </when>
+          <when test="horizontalTermDTO.filterType =='INTERVAL' ">
+            <if test="horizontalTermDTO.startValue !=null and horizontalTermDTO.startValue !=''">
+              horizontalData &gt;= ${horizontalTermDTO.startValue}
+            </if>
+            <if test="(horizontalTermDTO.startValue == null || horizontalTermDTO.startValue=='') and horizontalTermDTO.endValue != null and horizontalTermDTO.endValue !='' ">
+              horizontalData &lt;= ${horizontalTermDTO.endValue}
+            </if>
+            <if test="(horizontalTermDTO.startValue != null and horizontalTermDTO.startValue!='') !=null and horizontalTermDTO.endValue != null and horizontalTermDTO.endValue !=''">
+              and horizontalData &lt;= ${horizontalTermDTO.endValue}
+            </if>
+          </when>
+          <when test="horizontalTermDTO.filterType =='LIST' ">
+            horizontalData  in
+            <foreach collection="horizontalTermDTO.listValue" item="item" index="index" open="("
+              close=")" separator=",">
+              ${item}
+            </foreach>
+          </when>
+        </choose>
+      </if>
+
+    </if>
+    <!-- 纵轴 指标 过滤条件 -->
+    <if test="verticalTermDTO.isFilter">
+      <if test="horizontalTermDTO.isFilter">
+        and
+        <if test="verticalTermDTO.attrDataType == 'Integer'">
+          <if test="verticalTermDTO.filterType =='EQUAL' ">
+            verticalData = ${verticalTermDTO.filterValue}
+          </if>
+          <if test="verticalTermDTO.filterType =='INTERVAL' ">
+            <if test="verticalTermDTO.startValue !=null">
+              verticalData &gt;= ${verticalTermDTO.startValue}
+            </if>
+            <if
+              test="(verticalTermDTO.startValue ==null ||verticalTermDTO.startValue =='' ) and verticalTermDTO.endValue != null">
+              verticalData &lt;= ${verticalTermDTO.endValue}
+            </if>
+            <if
+              test="verticalTermDTO.startValue !=null and verticalTermDTO.startValue !=''  and verticalTermDTO.endValue != null and verticalTermDTO.endValue != '' ">
+              and verticalData &lt;= ${verticalTermDTO.endValue}
+            </if>
+          </if>
+          <if test="verticalTermDTO.filterType =='LIST' ">
+            verticalData in
+            <foreach collection="verticalTermDTO.listValue" item="item" index="index" open="("
+              close=")" separator=",">
+              ${item}
+            </foreach>
+          </if>
+        </if>
+      </if>
+      <if test="!horizontalTermDTO.isFilter">
+        having
+        <if test="verticalTermDTO.attrDataType == 'Integer'">
+          <if test="verticalTermDTO.filterType =='EQUAL' ">
+            verticalData = ${verticalTermDTO.filterValue}
+          </if>
+          <if test="verticalTermDTO.filterType =='INTERVAL' ">
+            <if test="verticalTermDTO.startValue !=null">
+              verticalData &gt;= ${verticalTermDTO.startValue}
+            </if>
+            <if
+              test="(verticalTermDTO.startValue ==null ||verticalTermDTO.startValue =='' ) and verticalTermDTO.endValue != null">
+              verticalData &lt;= ${verticalTermDTO.endValue}
+            </if>
+            <if
+              test="verticalTermDTO.startValue !=null and  verticalTermDTO.startValue !=''  and verticalTermDTO.endValue != null and verticalTermDTO.endValue != '' ">
+              and verticalData &lt;= ${verticalTermDTO.endValue}
+            </if>
+          </if>
+          <if test="verticalTermDTO.filterType =='LIST' ">
+            verticalData in
+            <foreach collection="verticalTermDTO.listValue" item="item" index="index" open="("
+              close=")" separator=",">
+              ${item}
+            </foreach>
+          </if>
+        </if>
+      </if>
+    </if>
+
+    ORDER BY horizontalData  ${horizontalTermDTO.orderBy}
+  </select>
+  <select id="selectListByQueryEventDataDTO" resultMap="BaseResultMap" parameterType="com.bmsoft.sharejdbc.dto.QueryEventDataDTO">
+    select ste.* from rec_event ste
+    <where>
+      ste.ec_type= #{relationType}
+      and ste.portfolio_id= #{portfolioId}
+      <!-- 原始数据筛选条件 filterTermDTOS-->
+      <if test="filterTermDTOS!=null">
+        <foreach collection="filterTermDTOS" index="index" item="filter">
+          <if test="filter.attrDataType =='Date'">
+            <if test="filter.dateDimension =='DAY' ">
+              <choose>
+                <when test="filter.filterType =='INTERVAL' ">
+                  <if test="filter.startValue !=null and filter.startValue !='' ">
+                    and DATE_FORMAT(ste.${filter.columnAttr},'%Y-%m-%d %H:%i') &gt;=
+                    DATE_FORMAT(#{filter.startValue},'%Y-%m-%d %H:%i')
+                  </if>
+                  <if test="filter.endValue != null and filter.endValue !='' ">
+                    and DATE_FORMAT(ste.${filter.columnAttr},'%Y-%m-%d %H:%i') &lt;=
+                    DATE_FORMAT(#{filter.endValue},'%Y-%m-%d %H:%i')
+                  </if>
+                </when>
+              </choose>
+            </if>
+          </if>
+          <if test="filter.attrDataType =='String'">
+            <choose>
+              <when test="filter.filterType =='EQUAL' ">
+                and ste.${filter.columnAttr} = #{filter.filterValue}
+              </when>
+              <when test="filter.filterType =='LIKE' ">
+                and ste.${filter.columnAttr} LIKE
+                CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+              </when>
+              <when test="filter.filterType =='UNLIKE' ">
+                and ste.${filter.columnAttr} NOT LIKE
+                CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+              </when>
+              <when test="filter.filterType =='LIST' ">
+                and ste.${filter.columnAttr} in
+                <foreach collection="filter.listValue" item="item" index="index" open="("
+                  close=")" separator=",">
+                  '${item}'
+                </foreach>
+              </when>
+            </choose>
+          </if>
+          <if test="filter.attrDataType =='Integer'">
+            <choose>
+              <when test="filter.filterType =='EQUAL' ">
+                and ste.${filter.columnAttr} = ${filter.filterValue}
+              </when>
+              <when test="filter.filterType =='INTERVAL' ">
+                <if test="filter.startValue !=null">
+                  and ste.${filter.columnAttr}  &gt;=${filter.startValue}
+                </if>
+                <if test="filter.endValue != null">
+                  and ste.${filter.columnAttr} &lt;= ${filter.endValue}
+                </if>
+              </when>
+              <when test="filter.filterType =='LIST' ">
+                and ste.${filter.columnAttr}  in
+                <foreach collection="filter.listValue" item="item" index="index" open="("
+                  close=")" separator=",">
+                  ${item}
+                </foreach>
+              </when>
+            </choose>
+          </if>
+        </foreach>
+      </if>
+      <!--横轴筛选-->
+      <if test="horizontalTermDTO.isFilter">
+        <if test="horizontalTermDTO.attrDataType =='Date'">
+          <if test="horizontalTermDTO.dateDimension == 'YEAR' ">
+            and  YEAR (ste.${horizontalTermDTO.columnAttr}) =  #{horizontalTermDTO.filterValue}
+          </if>
+          <if test="horizontalTermDTO.dateDimension == 'MONTH' ">
+            and
+            DATE_FORMAT(ste.${horizontalTermDTO.columnAttr},'%Y-%m')=  #{horizontalTermDTO.filterValue}
+          </if>
+          <if test="horizontalTermDTO.dateDimension == 'DAY' ">
+            and
+            DATE_FORMAT(ste.${horizontalTermDTO.columnAttr},'%Y-%m-%d')=#{horizontalTermDTO.filterValue}
+          </if>
+          <if test="horizontalTermDTO.dateDimension == 'WEEKDAY' ">
+            and WEEKDAY(ste.${horizontalTermDTO.columnAttr}) =#{horizontalTermDTO.filterValue}
+          </if>
+          <if test="horizontalTermDTO.dateDimension == 'HOUR' ">
+            and  HOUR(ste.${horizontalTermDTO.columnAttr})=#{horizontalTermDTO.filterValue}
+          </if>
+        </if>
+        <if test="horizontalTermDTO.attrDataType == 'String'">
+          and ste.${horizontalTermDTO.columnAttr} = #{horizontalTermDTO.filterValue}
+        </if>
+        <if test="horizontalTermDTO.attrDataType == 'Place'">
+          and ste.${horizontalTermDTO.columnAttr} = #{horizontalTermDTO.filterValue}
+        </if>
+        <if test="horizontalTermDTO.attrDataType == 'Integer'">
+          and ste.${horizontalTermDTO.columnAttr} = ${horizontalTermDTO.filterValue}
+        </if>
+      </if>
+      <!--唯一标识的值-->
+      <choose>
+        <!--当节点不为空时，表示是节点带来的查询-->
+        <when test="nodeType !=null and nodeType !=''  and nodeType !='null' ">
+          <if test="isFilterStartNode and !isFilterEndNode">
+            and ste.end_node=#{nodeValue}
+          </if>
+          <if test="!isFilterStartNode and isFilterEndNode">
+            and ste.start_node=#{nodeValue}
+          </if>
+          <if test="!isFilterEndNode and !isFilterStartNode">
+            and (ste.start_node=#{nodeValue} or ste.end_node=#{nodeValue})
+          </if>
+        </when>
+        <!--当节点为空时，表示是关系带来的查询-->
+        <when test="nodeType == 'null' || nodeType == null ">
+          and ste.start_node=#{startNodeValue} and ste.end_node=#{endNodeValue}
+        </when>
+      </choose>
+    </where>
+    order by ste.id
+  </select>
+  <select id="selectByQueryLinkEventDataDTO"
+    resultType="com.bmsoft.sharejdbc.vo.QueryTPEvenDataVO"
+    parameterType="com.bmsoft.sharejdbc.dto.QueryLinkedEventDataDTO">
+    <foreach collection="endsDTO" index="idx" item="end">
+      <choose>
+        <when test="idx ==0">
+          SELECT ste1.${start.dateTermDTO.columnAttr} as timeData ,
+          ste1.${start.placeTermDTO.columnAttr} as placeData ,
+          ste2.ec_type as relationType,
+          count(ste2.id) AS verticalData
+          FROM rec_event ste1
+          inner JOIN rec_event ste2
+          <if test="placeFilterType == 'EQUAL'">
+            on ste1.${start.placeTermDTO.columnAttr} =ste2.${end.placeTermDTO.columnAttr}
+          </if>
+          <if test="placeFilterType == 'LIKE'">
+            on ste1.${start.placeTermDTO.columnAttr} LIKE
+            CONCAT(CONCAT('%',ste2.${end.placeTermDTO.columnAttr}),'%')
+          </if>
+          <if test="placeFilterType == 'UNLIKE'">
+            on ste1.${start.placeTermDTO.columnAttr} NOT LIKE
+            CONCAT(CONCAT('%',ste2.${end.placeTermDTO.columnAttr}),'%')
+          </if>
+          and
+          ABS(timestampdiff(hour,ste1.${start.dateTermDTO.columnAttr},ste2.${end.dateTermDTO.columnAttr}))
+          &lt;= #{hour}
+          WHERE
+          ste1.ec_type= #{start.relationType} and ste1.portfolio_id= #{portfolioId}
+          <!--开始节点唯一标志的筛选条件-->
+          <if test="start.isFilterStartNode and !start.isFilterEndNode">
+            and ste1.end_node=#{start.nodeValue}
+          </if>
+          <if test="!start.isFilterStartNode and start.isFilterEndNode">
+            and ste1.start_node=#{start.nodeValue}
+          </if>
+          <if test="!start.isFilterEndNode and !start.isFilterStartNode">
+            and (ste1.start_node=#{start.nodeValue} or ste1.end_node=#{start.nodeValue})
+          </if>
+          <!--结果的时间筛选条件-->
+          <if test="timeResultFilters!=null and timeResultFilters.size()>0">
+            <foreach collection="timeResultFilters" index="index" item="filter">
+              <if test="filter.attrDataType =='Date'">
+                <if test="filter.dateDimension =='DAY' ">
+                  <choose>
+                    <when test="filter.filterType =='INTERVAL' ">
+                      <if test="filter.startValue !=null and filter.startValue !='' ">
+                        and DATE_FORMAT(ste1.${filter.columnAttr},'%Y-%m-%d %H:%i') &gt;=
+                        DATE_FORMAT(#{filter.startValue},'%Y-%m-%d %H:%i')
+                      </if>
+                      <if test="filter.endValue != null and filter.endValue !='' ">
+                        and DATE_FORMAT(ste1.${filter.columnAttr},'%Y-%m-%d %H:%i') &lt;=
+                        DATE_FORMAT(#{filter.endValue},'%Y-%m-%d %H:%i')
+                      </if>
+                    </when>
+                  </choose>
+                </if>
+              </if>
+            </foreach>
+          </if>
+          <!--结果的地点筛选条件-->
+          <if test="placeResultFilters!=null and placeResultFilters.size()>0">
+            <foreach collection="placeResultFilters" item="filter">
+              <if test="filter.attrDataType =='String' || filter.attrDataType =='Place'">
+                <choose>
+                  <when test="filter.filterType =='EQUAL' ">
+                    and ste1.${filter.columnAttr} = #{filter.filterValue}
+                  </when>
+                  <when test="filter.filterType =='LIKE' ">
+                    and ste1.${filter.columnAttr} LIKE
+                    CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+                  </when>
+                  <when test="filter.filterType =='UNLIKE' ">
+                    and ste1.${filter.columnAttr} NOT LIKE
+                    CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+                  </when>
+                  <when test="filter.filterType =='LIST' ">
+                    and ste1.${filter.columnAttr} in
+                    <foreach collection="filter.listValue" item="item" index="index" open="("
+                      close=")" separator=",">
+                      '${item}'
+                    </foreach>
+                  </when>
+                </choose>
+              </if>
+            </foreach>
+          </if>
+          <!--开始节点的筛选条件-->
+          <if test="start.filterTermDTOS!=null and start.filterTermDTOS.size()>0">
+            <foreach collection="start.filterTermDTOS" item="filter">
+              <if test="filter.attrDataType =='Date'">
+                <if test="filter.dateDimension =='DAY' ">
+                  <choose>
+                    <when test="filter.filterType =='INTERVAL' ">
+                      <if test="filter.startValue !=null and filter.startValue !='' ">
+                        and DATE_FORMAT(ste1.${filter.columnAttr},'%Y-%m-%d %H:%i') &gt;=
+                        DATE_FORMAT(#{filter.startValue},'%Y-%m-%d %H:%i')
+                      </if>
+                      <if test="filter.endValue != null and filter.endValue !='' ">
+                        and DATE_FORMAT(ste1.${filter.columnAttr},'%Y-%m-%d %H:%i') &lt;=
+                        DATE_FORMAT(#{filter.endValue},'%Y-%m-%d %H:%i')
+                      </if>
+                    </when>
+                  </choose>
+                </if>
+              </if>
+              <if test="filter.attrDataType =='String' || filter.attrDataType =='Place'">
+                <choose>
+                  <when test="filter.filterType =='EQUAL' ">
+                    and ste1.${filter.columnAttr} = #{filter.filterValue}
+                  </when>
+                  <when test="filter.filterType =='LIKE' ">
+                    and ste1.${filter.columnAttr} LIKE
+                    CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+                  </when>
+                  <when test="filter.filterType =='UNLIKE' ">
+                    and ste1.${filter.columnAttr} NOT LIKE
+                    CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+                  </when>
+                  <when test="filter.filterType =='LIST' ">
+                    and ste1.${filter.columnAttr} in
+                    <foreach collection="filter.listValue" item="item" index="index" open="("
+                      close=")" separator=",">
+                      '${item}'
+                    </foreach>
+                  </when>
+                </choose>
+              </if>
+              <if test="filter.attrDataType =='Integer'">
+                <choose>
+                  <when test="filter.filterType =='EQUAL' ">
+                    and ste1.${filter.columnAttr} = ${filter.filterValue}
+                  </when>
+                  <when test="filter.filterType =='INTERVAL' ">
+                    <if test="filter.startValue !=null">
+                      and ste1.${filter.columnAttr} &gt;= ${filter.startValue}
+                    </if>
+                    <if test="filter.endValue != null">
+                      and ste1.${filter.columnAttr} &lt;= ${filter.endValue}
+                    </if>
+                  </when>
+                </choose>
+              </if>
+            </foreach>
+          </if>
+          and ste2.ec_type= #{end.relationType} and ste2.portfolio_id= #{portfolioId}
+          <!--结束节点唯一标志的筛选条件-->
+          <if test="end.isFilterStartNode and !end.isFilterEndNode">
+            and ste2.end_node=#{end.nodeValue}
+          </if>
+          <if test="!end.isFilterStartNode and end.isFilterEndNode">
+            and ste2.start_node=#{end.nodeValue}
+          </if>
+          <if test="!end.isFilterEndNode and !end.isFilterStartNode">
+            and (ste2.start_node=#{end.nodeValue} or ste2.end_node=#{end.nodeValue})
+          </if>
+
+          <!--结束节点的筛选条件-->
+          <if test="end.filterTermDTOS!=null and end.filterTermDTOS.size()>0">
+            <foreach collection="end.filterTermDTOS" item="filter2">
+              <if test="filter2.attrDataType =='Date'">
+                <if test="filter2.dateDimension =='DAY' ">
+                  <choose>
+                    <when test="filter2.filterType =='INTERVAL' ">
+                      <if test="filter2.startValue !=null and filter2.startValue !='' ">
+                        and DATE_FORMAT(ste2.${filter2.columnAttr},'%Y-%m-%d %H:%i') &gt;=
+                        DATE_FORMAT(#{filter2.startValue},'%Y-%m-%d %H:%i')
+                      </if>
+                      <if test="filter2.endValue != null and filter2.endValue !='' ">
+                        and DATE_FORMAT(ste2.${filter2.columnAttr},'%Y-%m-%d %H:%i') &lt;=
+                        DATE_FORMAT(#{filter2.endValue},'%Y-%m-%d %H:%i')
+                      </if>
+                    </when>
+                  </choose>
+                </if>
+              </if>
+              <if test="filter2.attrDataType =='String' || filter2.attrDataType =='Place'">
+                <choose>
+                  <when test="filter2.filterType =='EQUAL' ">
+                    and ste2.${filter2.columnAttr} = #{filter2.filterValue}
+                  </when>
+                  <when test="filter2.filterType =='LIKE' ">
+                    and ste2.${filter2.columnAttr} LIKE
+                    CONCAT(CONCAT('%',#{filter2.filterValue}),'%')
+                  </when>
+                  <when test="filter2.filterType =='UNLIKE' ">
+                    and ste2.${filter2.columnAttr} NOT LIKE
+                    CONCAT(CONCAT('%',#{filter2.filterValue}),'%')
+                  </when>
+                </choose>
+              </if>
+              <if test="filter2.attrDataType =='Integer'">
+                <choose>
+                  <when test="filter2.filterType =='EQUAL' ">
+                    and ste2.${filter2.columnAttr} = ${filter2.filterValue}
+                  </when>
+                  <when test="filter2.filterType =='INTERVAL' ">
+                    <if test="filter2.startValue !=null">
+                      and ste2.${filter2.columnAttr} &gt;= ${filter2.startValue}
+                    </if>
+                    <if test="filter2.endValue != null">
+                      and ste2.${filter2.columnAttr} &lt;= ${filter2.endValue}
+                    </if>
+                  </when>
+                </choose>
+              </if>
+            </foreach>
+          </if>
+          GROUP BY timeData,placeData
+        </when>
+        <otherwise>
+          UNION ALL(
+          SELECT ste1.${start.dateTermDTO.columnAttr} as timeData ,
+          ste1.${start.placeTermDTO.columnAttr} as placeData ,
+          ste2.ec_type as relationType,
+          count(ste2.id) AS verticalData
+          FROM rec_event ste1
+          inner JOIN rec_event ste2
+          <if test="placeFilterType == 'EQUAL'">
+            on ste1.${start.placeTermDTO.columnAttr} =ste2.${end.placeTermDTO.columnAttr}
+          </if>
+          <if test="placeFilterType == 'LIKE'">
+            on ste1.${start.placeTermDTO.columnAttr} LIKE
+            CONCAT(CONCAT('%',ste2.${end.placeTermDTO.columnAttr}),'%')
+          </if>
+          <if test="placeFilterType == 'UNLIKE'">
+            on ste1.${start.placeTermDTO.columnAttr} NOT LIKE
+            CONCAT(CONCAT('%',ste2.${end.placeTermDTO.columnAttr}),'%')
+          </if>
+          and
+          ABS(timestampdiff(hour,ste1.${start.dateTermDTO.columnAttr},ste2.${end.dateTermDTO.columnAttr}))
+          &lt;= #{hour}
+          WHERE
+          ste1.ec_type= #{start.relationType} and ste1.portfolio_id= #{portfolioId}
+          <!--开始节点唯一标志的筛选条件-->
+          <if test="start.isFilterStartNode and !start.isFilterEndNode">
+            and ste1.end_node=#{start.nodeValue}
+          </if>
+          <if test="!start.isFilterStartNode and start.isFilterEndNode">
+            and ste1.start_node=#{start.nodeValue}
+          </if>
+          <if test="!start.isFilterEndNode and !start.isFilterStartNode">
+            and (ste1.start_node=#{start.nodeValue} or ste1.end_node=#{start.nodeValue})
+          </if>
+          <!--结果的时间筛选条件-->
+          <if test="timeResultFilters!=null and timeResultFilters.size()>0">
+            <foreach collection="timeResultFilters" item="filter">
+              <if test="filter.attrDataType =='Date'">
+                <if test="filter.dateDimension =='DAY' ">
+                  <choose>
+                    <when test="filter.filterType =='INTERVAL' ">
+                      <if test="filter.startValue !=null and filter.startValue !='' ">
+                        and DATE_FORMAT(ste1.${filter.columnAttr},'%Y-%m-%d %H:%i') &gt;=
+                        DATE_FORMAT(#{filter.startValue},'%Y-%m-%d %H:%i')
+                      </if>
+                      <if test="filter.endValue != null and filter.endValue !='' ">
+                        and DATE_FORMAT(ste1.${filter.columnAttr},'%Y-%m-%d %H:%i') &lt;=
+                        DATE_FORMAT(#{filter.endValue},'%Y-%m-%d %H:%i')
+                      </if>
+                    </when>
+                  </choose>
+                </if>
+              </if>
+            </foreach>
+          </if>
+          <!--结果的地点筛选条件-->
+          <if test="placeResultFilters!=null and placeResultFilters.size()>0">
+            <foreach collection="placeResultFilters" item="filter">
+              <if test="filter.attrDataType =='String' || filter.attrDataType =='Place'">
+                <choose>
+                  <when test="filter.filterType =='EQUAL' ">
+                    and ste1.${filter.columnAttr} = #{filter.filterValue}
+                  </when>
+                  <when test="filter.filterType =='LIKE' ">
+                    and ste1.${filter.columnAttr} LIKE
+                    CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+                  </when>
+                  <when test="filter.filterType =='UNLIKE' ">
+                    and ste1.${filter.columnAttr} NOT LIKE
+                    CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+                  </when>
+                  <when test="filter.filterType =='LIST' ">
+                    and ste1.${filter.columnAttr} in
+                    <foreach collection="filter.listValue" item="item" index="index" open="("
+                      close=")" separator=",">
+                      '${item}'
+                    </foreach>
+                  </when>
+                </choose>
+              </if>
+            </foreach>
+          </if>
+          <!--开始节点的筛选条件-->
+          <if test="start.filterTermDTOS!=null and start.filterTermDTOS.size()>0">
+            <foreach collection="start.filterTermDTOS" item="filter">
+              <if test="filter.attrDataType =='Date'">
+                <if test="filter.dateDimension =='DAY' ">
+                  <choose>
+                    <when test="filter.filterType =='INTERVAL' ">
+                      <if test="filter.startValue !=null and filter.startValue !='' ">
+                        and DATE_FORMAT(ste1.${filter.columnAttr},'%Y-%m-%d %H:%i') &gt;=
+                        DATE_FORMAT(#{filter.startValue},'%Y-%m-%d %H:%i')
+                      </if>
+                      <if test="filter.endValue != null and filter.endValue !='' ">
+                        and DATE_FORMAT(ste1.${filter.columnAttr},'%Y-%m-%d %H:%i') &lt;=
+                        DATE_FORMAT(#{filter.endValue},'%Y-%m-%d %H:%i')
+                      </if>
+                    </when>
+                  </choose>
+                </if>
+              </if>
+              <if test="filter.attrDataType =='String' || filter.attrDataType =='Place'">
+                <choose>
+                  <when test="filter.filterType =='EQUAL' ">
+                    and ste1.${filter.columnAttr} = #{filter.filterValue}
+                  </when>
+                  <when test="filter.filterType =='LIKE' ">
+                    and ste1.${filter.columnAttr} LIKE
+                    CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+                  </when>
+                  <when test="filter.filterType =='UNLIKE' ">
+                    and ste1.${filter.columnAttr} NOT LIKE
+                    CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+                  </when>
+                  <when test="filter.filterType =='LIST' ">
+                    and ste1.${filter.columnAttr} in
+                    <foreach collection="filter.listValue" item="item" index="index" open="("
+                      close=")" separator=",">
+                      '${item}'
+                    </foreach>
+                  </when>
+                </choose>
+              </if>
+              <if test="filter.attrDataType =='Integer'">
+                <choose>
+                  <when test="filter.filterType =='EQUAL' ">
+                    and ste1.${filter.columnAttr} = ${filter.filterValue}
+                  </when>
+                  <when test="filter.filterType =='INTERVAL' ">
+                    <if test="filter.startValue !=null">
+                      and ste1.${filter.columnAttr} &gt;= ${filter.startValue}
+                    </if>
+                    <if test="filter.endValue != null">
+                      and ste1.${filter.columnAttr} &lt;= ${filter.endValue}
+                    </if>
+                  </when>
+                </choose>
+              </if>
+            </foreach>
+          </if>
+          and ste2.ec_type= #{end.relationType} and ste2.portfolio_id= #{portfolioId}
+          <!--结束节点唯一标志的筛选条件-->
+          <if test="end.isFilterStartNode and !end.isFilterEndNode">
+            and ste2.end_node=#{end.nodeValue}
+          </if>
+          <if test="!end.isFilterStartNode and end.isFilterEndNode">
+            and ste2.start_node=#{end.nodeValue}
+          </if>
+          <if test="!end.isFilterEndNode and !end.isFilterStartNode">
+            and (ste2.start_node=#{end.nodeValue} or ste2.end_node=#{end.nodeValue})
+          </if>
+          <!--结束节点的筛选条件-->
+          <if test="end.filterTermDTOS!=null and end.filterTermDTOS.size()>0">
+            <foreach collection="end.filterTermDTOS" item="filter2">
+              <if test="filter2.attrDataType =='Date'">
+                <if test="filter2.dateDimension =='DAY' ">
+                  <choose>
+                    <when test="filter2.filterType =='INTERVAL' ">
+                      <if test="filter2.startValue !=null and filter2.startValue !='' ">
+                        and DATE_FORMAT(ste2.${filter2.columnAttr},'%Y-%m-%d %H:%i') &gt;=
+                        DATE_FORMAT(#{filter2.startValue},'%Y-%m-%d %H:%i')
+                      </if>
+                      <if test="filter2.endValue != null and filter2.endValue !='' ">
+                        and DATE_FORMAT(ste2.${filter2.columnAttr},'%Y-%m-%d %H:%i') &lt;=
+                        DATE_FORMAT(#{filter2.endValue},'%Y-%m-%d %H:%i')
+                      </if>
+                    </when>
+                  </choose>
+                </if>
+              </if>
+              <if test="filter2.attrDataType =='String' || filter2.attrDataType =='Place'">
+                <choose>
+                  <when test="filter2.filterType =='EQUAL' ">
+                    and ste2.${filter2.columnAttr} = #{filter2.filterValue}
+                  </when>
+                  <when test="filter2.filterType =='LIKE' ">
+                    and ste2.${filter2.columnAttr} LIKE
+                    CONCAT(CONCAT('%',#{filter2.filterValue}),'%')
+                  </when>
+                  <when test="filter2.filterType =='UNLIKE' ">
+                    and ste2.${filter2.columnAttr} NOT LIKE
+                    CONCAT(CONCAT('%',#{filter2.filterValue}),'%')
+                  </when>
+                </choose>
+              </if>
+              <if test="filter2.attrDataType =='Integer'">
+                <choose>
+                  <when test="filter2.filterType =='EQUAL' ">
+                    and ste2.${filter2.columnAttr} = ${filter2.filterValue}
+                  </when>
+                  <when test="filter2.filterType =='INTERVAL' ">
+                    <if test="filter2.startValue !=null">
+                      and ste2.${filter2.columnAttr} &gt;= ${filter2.startValue}
+                    </if>
+                    <if test="filter2.endValue != null">
+                      and ste2.${filter2.columnAttr} &lt;= ${filter2.endValue}
+                    </if>
+                  </when>
+                </choose>
+              </if>
+            </foreach>
+          </if>
+          GROUP BY timeData,placeData
+          )
+        </otherwise>
+      </choose>
+    </foreach>
+  </select>
+  <select id="selectListByQueryLinkEventDataDTO" resultMap="BaseResultMap"
+    parameterType="com.bmsoft.sharejdbc.dto.QueryLinkedEventDataDTO">
+    <if test="start!=null">
+      select ste.* from rec_event ste
+      <where>
+        ste.portfolio_id= #{portfolioId}
+        and ste.ec_type= #{start.relationType}
+        <!--开始节点唯一标志的筛选条件-->
+        <if test="start.isFilterStartNode and !start.isFilterEndNode">
+          and ste.end_node=#{start.nodeValue}
+        </if>
+        <if test="!start.isFilterStartNode and start.isFilterEndNode">
+          and ste.start_node=#{start.nodeValue}
+        </if>
+        <if test="!start.isFilterEndNode and !start.isFilterStartNode">
+          and (ste.start_node=#{start.nodeValue} or ste.end_node=#{start.nodeValue})
+        </if>
+        <if test="start.dateTermDTO!=null">
+          and ste.${start.dateTermDTO.columnAttr} =#{start.dateTermDTO.filterValue}
+        </if>
+        <if test="start.placeTermDTO!=null">
+          and ste.${start.placeTermDTO.columnAttr}= #{start.placeTermDTO.filterValue}
+        </if>
+        <!--开始节点的筛选条件-->
+        <if test="start.filterTermDTOS!=null and start.filterTermDTOS.size()>0">
+          <foreach collection="start.filterTermDTOS" item="filter">
+            <if test="filter.attrDataType =='Date'">
+              <if test="filter.dateDimension =='DAY' ">
+                <choose>
+                  <when test="filter.filterType =='INTERVAL' ">
+                    <if test="filter.startValue !=null and filter.startValue !='' ">
+                      and DATE_FORMAT(ste1.${filter.columnAttr},'%Y-%m-%d %H:%i') &gt;=
+                      DATE_FORMAT(#{filter.startValue},'%Y-%m-%d %H:%i')
+                    </if>
+                    <if test="filter.endValue != null and filter.endValue !='' ">
+                      and DATE_FORMAT(ste1.${filter.columnAttr},'%Y-%m-%d %H:%i') &lt;=
+                      DATE_FORMAT(#{filter.endValue},'%Y-%m-%d %H:%i')
+                    </if>
+                  </when>
+                </choose>
+              </if>
+            </if>
+            <if test="filter.attrDataType =='String' || filter.attrDataType =='Place'">
+              <choose>
+                <when test="filter.filterType =='EQUAL' ">
+                  and ste.${filter.columnAttr} = #{filter.filterValue}
+                </when>
+                <when test="filter.filterType =='LIKE' ">
+                  and ste.${filter.columnAttr} LIKE
+                  CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+                </when>
+                <when test="filter.filterType =='UNLIKE' ">
+                  and ste.${filter.columnAttr} NOT LIKE
+                  CONCAT(CONCAT('%',#{filter.filterValue}),'%')
+                </when>
+                <when test="filter.filterType =='LIST' ">
+                  and ste.${filter.columnAttr} in
+                  <foreach collection="filter.listValue" item="item" index="index" open="("
+                    close=")" separator=",">
+                    '${item}'
+                  </foreach>
+                </when>
+              </choose>
+            </if>
+            <if test="filter.attrDataType =='Integer'">
+              <choose>
+                <when test="filter.filterType =='EQUAL' ">
+                  and ste.${filter.columnAttr} = ${filter.filterValue}
+                </when>
+                <when test="filter.filterType =='INTERVAL' ">
+                  <if test="filter.startValue !=null">
+                    and ste.${filter.columnAttr} &gt;= ${filter.startValue}
+                  </if>
+                  <if test="filter.endValue != null">
+                    and ste.${filter.columnAttr} &lt;= ${filter.endValue}
+                  </if>
+                </when>
+              </choose>
+            </if>
+          </foreach>
+        </if>
+      </where>
+      order by ste.id
+    </if>
+    <if test="end!=null">
+      <if test="endsDTO!=null and endsDTO.size()>0">
+        <foreach collection="endsDTO" index="idx" item="end">
+          <if test="idx==0">
+            SELECT ste2.*
+            FROM rec_event ste2
+            WHERE
+            ste2.ec_type= #{end.relationType} and ste2.portfolio_id= #{portfolioId}
+            <!--结束节点唯一标志的筛选条件-->
+            <if test="end.isFilterStartNode and !end.isFilterEndNode">
+              and ste2.end_node=#{end.nodeValue}
+            </if>
+            <if test="!end.isFilterStartNode and end.isFilterEndNode">
+              and ste2.start_node=#{end.nodeValue}
+            </if>
+            <if test="!end.isFilterEndNode and !end.isFilterStartNode">
+              and (ste2.start_node=#{end.nodeValue} or ste2.end_node=#{end.nodeValue})
+            </if>
+            <if test="end.dateTermDTO!=null">
+              and
+              ABS(timestampdiff(hour,ste2.${end.dateTermDTO.columnAttr},#{end.dateTermDTO.filterValue}))
+              &lt;= #{hour}
+            </if>
+            <if test="end.placeTermDTO!=null">
+              and ste2.${end.placeTermDTO.columnAttr}= #{end.placeTermDTO.filterValue}
+            </if>
+            <!--结束节点的筛选条件-->
+            <if test="end.filterTermDTOS!=null and end.filterTermDTOS.size()>0">
+              <foreach collection="end.filterTermDTOS" item="filter2">
+                <if test="filter2.attrDataType =='Date'">
+                  <if test="filter2.dateDimension =='DAY' ">
+                    <choose>
+                      <when test="filter2.filterType =='INTERVAL' ">
+                        <if test="filter2.startValue !=null and filter2.startValue !='' ">
+                          and DATE_FORMAT(ste2.${filter2.columnAttr},'%Y-%m-%d %H:%i') &gt;=
+                          DATE_FORMAT(#{filter2.startValue},'%Y-%m-%d %H:%i')
+                        </if>
+                        <if test="filter2.endValue != null and filter2.endValue !='' ">
+                          and DATE_FORMAT(ste2.${filter2.columnAttr},'%Y-%m-%d %H:%i') &lt;=
+                          DATE_FORMAT(#{filter2.endValue},'%Y-%m-%d %H:%i')
+                        </if>
+                      </when>
+                    </choose>
+                  </if>
+                </if>
+                <if test="filter2.attrDataType =='String' || filter2.attrDataType =='Place'">
+                  <choose>
+                    <when test="filter2.filterType =='EQUAL' ">
+                      and ste2.${filter2.columnAttr} = #{filter2.filterValue}
+                    </when>
+                    <when test="filter2.filterType =='LIKE' ">
+                      and ste2.${filter2.columnAttr} LIKE
+                      CONCAT(CONCAT('%',#{filter2.filterValue}),'%')
+                    </when>
+                    <when test="filter2.filterType =='UNLIKE' ">
+                      and ste2.${filter2.columnAttr} NOT LIKE
+                      CONCAT(CONCAT('%',#{filter2.filterValue}),'%')
+                    </when>
+                  </choose>
+                </if>
+                <if test="filter2.attrDataType =='Integer'">
+                  <choose>
+                    <when test="filter2.filterType =='EQUAL' ">
+                      and ste2.${filter2.columnAttr} = ${filter2.filterValue}
+                    </when>
+                    <when test="filter2.filterType =='INTERVAL' ">
+                      <if test="filter2.startValue !=null">
+                        and ste2.${filter2.columnAttr} &gt;= ${filter2.startValue}
+                      </if>
+                      <if test="filter2.endValue != null">
+                        and ste2.${filter2.columnAttr} &lt;= ${filter2.endValue}
+                      </if>
+                    </when>
+                  </choose>
+                </if>
+              </foreach>
+            </if>
+          </if>
+          <if test="idx>0">
+            UNION ALL(
+            SELECT ste2.*
+            FROM rec_event ste2
+            WHERE
+            ste2.ec_type= #{end.relationType} and ste2.portfolio_id= #{portfolioId}
+            <!--结束节点唯一标志的筛选条件-->
+            <if test="end.isFilterStartNode and !end.isFilterEndNode">
+              and ste2.end_node=#{end.nodeValue}
+            </if>
+            <if test="!end.isFilterStartNode and end.isFilterEndNode">
+              and ste2.start_node=#{end.nodeValue}
+            </if>
+            <if test="!end.isFilterEndNode and !end.isFilterStartNode">
+              and (ste2.start_node=#{end.nodeValue} or ste2.end_node=#{end.nodeValue})
+            </if>
+            <if test="end.dateTermDTO!=null">
+              and
+              ABS(timestampdiff(hour,ste2.${end.dateTermDTO.columnAttr},#{end.dateTermDTO.filterValue}))
+              &lt;= #{hour}
+            </if>
+            <if test="end.placeTermDTO!=null">
+              and ste2.${end.placeTermDTO.columnAttr}= #{end.placeTermDTO.filterValue}
+            </if>
+            <!--结束节点的筛选条件-->
+            <if test="end.filterTermDTOS!=null and end.filterTermDTOS.size()>0">
+              <foreach collection="end.filterTermDTOS" item="filter2">
+                <if test="filter2.attrDataType =='Date'">
+                  <if test="filter2.dateDimension =='DAY' ">
+                    <choose>
+                      <when test="filter2.filterType =='INTERVAL' ">
+                        <if test="filter2.startValue !=null and filter2.startValue !='' ">
+                          and DATE_FORMAT(ste2.${filter2.columnAttr},'%Y-%m-%d %H:%i') &gt;=
+                          DATE_FORMAT(#{filter2.startValue},'%Y-%m-%d %H:%i')
+                        </if>
+                        <if test="filter2.endValue != null and filter2.endValue !='' ">
+                          and DATE_FORMAT(ste2.${filter2.columnAttr},'%Y-%m-%d %H:%i') &lt;=
+                          DATE_FORMAT(#{filter2.endValue},'%Y-%m-%d %H:%i')
+                        </if>
+                      </when>
+                    </choose>
+                  </if>
+                </if>
+                <if test="filter2.attrDataType =='String' || filter2.attrDataType =='Place'">
+                  <choose>
+                    <when test="filter2.filterType =='EQUAL' ">
+                      and ste2.${filter2.columnAttr} = #{filter2.filterValue}
+                    </when>
+                    <when test="filter2.filterType =='LIKE' ">
+                      and ste2.${filter2.columnAttr} LIKE
+                      CONCAT(CONCAT('%',#{filter2.filterValue}),'%')
+                    </when>
+                    <when test="filter2.filterType =='UNLIKE' ">
+                      and ste2.${filter2.columnAttr} NOT LIKE
+                      CONCAT(CONCAT('%',#{filter2.filterValue}),'%')
+                    </when>
+                  </choose>
+                </if>
+                <if test="filter2.attrDataType =='Integer'">
+                  <choose>
+                    <when test="filter2.filterType =='EQUAL' ">
+                      and ste2.${filter2.columnAttr} = ${filter2.filterValue}
+                    </when>
+                    <when test="filter2.filterType =='INTERVAL' ">
+                      <if test="filter2.startValue !=null">
+                        and ste2.${filter2.columnAttr} &gt;= ${filter2.startValue}
+                      </if>
+                      <if test="filter2.endValue != null">
+                        and ste2.${filter2.columnAttr} &lt;= ${filter2.endValue}
+                      </if>
+                    </when>
+                  </choose>
+                </if>
+              </foreach>
+            </if>
+            )
+          </if>
+        </foreach>
+      </if>
+      order by id asc
+    </if>
+  </select>
+
+
+  <select id="getEventCountByUniqueAttr"
+    resultType="com.bmsoft.sharejdbc.vo.EventCountVO" >
+    <foreach collection="listString" index="idx" item="item">
+    <if test="idx==0">
+      SELECT ste1.start_node as start_node,
+      ste1.end_node as endNode,
+      count(ste1.id)  as eventCount
+      FROM rec_event ste1
+      where
+      ste1.portfolio_id= #{portfolioId}
+      and (ste1.start_node=#{item} or ste1.end_node=#{item})
+    </if>
+      <if test="idx!=0">
+      union all(
+        SELECT ste1.start_node as start_node,
+        ste1.end_node as endNode,
+        count(ste1.id)  as eventCount
+        FROM rec_event ste1
+        where
+        ste1.portfolio_id= #{portfolioId}
+        and (ste1.start_node=#{item} or ste1.end_node=#{item})
+        )
+      </if>
+    </foreach>
+
+  </select>
+
+</mapper>
